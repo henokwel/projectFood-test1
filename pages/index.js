@@ -4,30 +4,41 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css'
 
 export default function Home({ data }) {
-
+  const [currentSearch, setCurrentSearch] = useState("");
   console.log(data);
 
-  const [currentSearch, setCurrentSearch] = useState("");
-  // const fetchData = async () => {
 
+  // const fetchData = async () => {
   //   const res = await fetch("/api/hello")
   //   const data = await res.json()
   //   console.log(data);
-
   // }
 
+
+  // Get Location
   
 
+
+
+
   const fetchData = async () => {
-    const res = await fetch("/api/hello")
-    const data = await res.json()
-    console.log(data);
+    // const res = await fetch("/api/hello")
+    // const data = await res.json()
+    // console.log(data);
+    // if (navigator.geolocation) {
+    //  navigator.geolocation.getCurrentPosition(showPos)
+    //  showPos()
 
   }
 
 
+  const showPos = (pos) => {
+    console.log(pos)
+  }
   //
-
+  const showInMapClicked = () => {
+    // window.open("https://maps.google.com?q=59.5280591+17.913884")
+  };
 
   // useEffect(() => {
   //   (async () => {
@@ -58,17 +69,41 @@ export default function Home({ data }) {
 
       <main className={styles.main}>
 
-        <h4>Google Api Test</h4>
-        <button onClick={fetchData}>Fetch Data</button>
+        <h4>Your Current Location</h4>
+        <button onClick={showInMapClicked}>Get Location</button>
 
         <form onSubmit={(e) => handleSubmit(e)}>
-          <input
+          {/* <input
             type="text"
             value={currentSearch}
             onChange={(e) => handleInput(e)}
             placeholder="Your Location" />
+          <br /> */}
+          <label>
+            Food: <br />
+            <select  >
+              <option value="grapefruit" defaultChecked >All</option>
+              <option value="lime">Pizza</option>
+              <option value="coconut">Burger</option>
+              <option value="mango">Sushi</option>
+              <option value="mango">Kebab</option>
+            </select>
+          </label>
           <br />
-          <input type="submit" title="Submit" value="Submit" />
+
+          <label>
+            Price:<br />
+            <select  >
+              {/* <option value="grapefruit" defaultChecked >All</option> */}
+              <option value="one" >$</option>
+              <option value="two" defaultChecked>$$</option>
+              <option value="three">$$$</option>
+
+            </select>
+          </label>
+          <br />
+
+          <input type="submit" title="Submit" value="Search" />
         </form>
 
         {currentSearch}
@@ -89,5 +124,6 @@ export default function Home({ data }) {
 //   // Pass data to the page via props
 //   return { props: { data } }
 // }
+
 
 
